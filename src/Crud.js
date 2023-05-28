@@ -7,32 +7,34 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
-
 import Form from "react-bootstrap/Form";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { Toast } from "bootstrap";
 
 const CRUD = () => {
   const empdata = [
     //sters
     {
       id: 1,
-      firstName: "Manij",
-      lastName: "Manij",
-      age: 34,
+      firstName: "Emily",
+      lastName: "Johnson",
+      age: 28,
       isStudent: 1,
     },
     {
       id: 2,
-      firstName: "Pi",
-      lastName: "Manij",
-      age: 23,
-      isStudent: 1,
+      firstName: "Marcus",
+      lastName: "Lee",
+      age: 33,
+      isStudent: 0,
     },
     {
       id: 3,
-      firstName: "Jafar",
-      lastName: "Manij",
-      age: 55,
-      isStudent: 0,
+      firstName: "Isabella",
+      lastName: "Rodriguez",
+      age: 21,
+      isStudent: 1,
     },
   ];
 
@@ -50,7 +52,7 @@ const CRUD = () => {
   const [editIsStudent, setEditIsStudent] = useState(0);
 
   useEffect(() => {
-    setData(empdata); //probabil sters
+    setData(empdata);
     //getData();
   }, []);
 
@@ -88,9 +90,20 @@ const CRUD = () => {
     return !isNaN(inputValue) && !isNaN(parseFloat(inputValue));
   }
 
+  function isNumber(value) {
+    return !isNaN(value);
+  }
+
   function hasSpecialCharacters(str) {
-    const regex = /[!@#$%^&*(),.?":{}|<>]/g;
-    return regex.test(str);
+    const regex = /[!@#$%^&*(),.?":{}|<>_+=;'/]/g;
+    return regex.test(str) || /^-+$/.test(str);
+  }
+
+  function valueContainsWhiteSpaces(value) {
+    if (value.includes(" ")) {
+      return false; // Name contains numbers or special characters
+    }
+    return true; // Name is valid
   }
 
   const handleCreate = () => {
@@ -102,42 +115,75 @@ const CRUD = () => {
       age: age,
       isStudent: isStudent,
     };
+
     if (isInputBlank(firstName) || isInputBlank(lastName) || isInputBlank(age))
       alert("One of the input is consist only from white spaces!");
     else if (hasSpecialCharacters(firstName) || hasSpecialCharacters(lastName))
       alert("First name or last name has special characters.");
+    else if (isNumber(firstName) || isNumber(lastName))
+      alert("Names can not be numbers");
+    else if (
+      valueContainsWhiteSpaces(firstName) === false ||
+      valueContainsWhiteSpaces(lastName) === false ||
+      valueContainsWhiteSpaces(age) === false
+    )
+      alert("Name is not a correct value");
     else if (isInputOnlyNumbers(age) === false) alert("Age is not a number");
-    else if (age <= 0 || age > 150) alert("Age is not a correct value");
+    else if (age < 16 || age > 100) alert("Age should be between 16 and 100");
     else if (age.indexOf(".") !== -1)
       alert("Age is accepted only as an integer!");
-    else setData([...data, newData]); //sters
+    else {
+      axios.post(url, newData).then((result) => {
+        toast.success("Student successfully added.")
+        //getData();
+      }).catch((error) => {
+        toast.error(error);
+      });
 
-    axios.post(url, data).then((result) => {
-      setData([...data, newData]); //sters
-      //getData();
-    });
+      setFirstName("");
+      setLastName("");
+      setAge("");
+      setIsStudent(false);
+    }
   };
 
   const getData = () => {
     axios
-      .get("url")
+      .get(`url`)
       .then((result) => {
         setData(result.data);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        toast.error(error);
+      });
   };
 
-  const handleEdit = () => {
+  const handleEdit = (id) => {
+    
     handleShow();
+    axios
+      .get(`url/${id}`)
+      .then((result) => {
+        setEditFirstName(result.data.firstName);
+        setEditFirstName(result.data.lastName);
+        setEditFirstName(result.data.age);
+        setEditFirstName(result.data.isStudent);
+        setEditID(id);
+      })
+      .catch((error) => {
+        toast.error(error);
+      });
   };
 
   const handleUpdate = () => {
-    // const newData = {
-    //   editFirstName: editFirstName,
-    //   editLastName: editLastName,
-    //   editAge: editAge,
-    //   editIsStudent: editIsStudent,
-    // };
+    const url = ``;
+
+    const newData = {
+      "firstName": editFirstName,
+      "lastName": editLastName,
+      "age": editAge,
+      "isStudent": editIsStudent,
+    };
 
     if (
       isInputBlank(editFirstName) ||
@@ -150,38 +196,59 @@ const CRUD = () => {
       hasSpecialCharacters(editLastName)
     )
       alert("First name or last name has special characters.");
+    else if (isNumber(editFirstName) || isNumber(editLastName))
+      alert("Names can not be numbers");
+    else if (
+      valueContainsWhiteSpaces(editFirstName) === false ||
+      valueContainsWhiteSpaces(editLastName) === false ||
+      valueContainsWhiteSpaces(age) === false
+    )
+      alert("One of the input contains white spaces whith text");
     else if (isInputOnlyNumbers(editAge) === false)
       alert("Age is not a number");
     else if (editAge <= 0 || editAge > 150) alert("Age is not a correct value");
     else if (editAge.indexOf(".") !== -1)
       alert("Age is accepted only as an integer!");
     else {
-      
-
-      //setData([...data, newData]); //sters
-      //handleClose();
+      axios
+        .put(url, newData)
+        .then(() => {
+          toast.success("Student successfully updated.");
+          getData();
+          //handleClose();
+        })
+        .catch((error) => {
+          toast.error(error);
+        });
     }
   };
 
   const handleDelete = (id) => {
-    const updatedData = data.filter((item) => item.id !== id);
-    setData(updatedData);
+    if (window.confirm("Are you sure you want to delete this student?")) {
+      axios
+        .delete(`url/${id}`)
+        .then((result) => {
+          if (result.status === 200) {
+            toast.success("Student has been delete.")
+            getData();
+          }
+        })
+        .catch((error) => {
+          toast.error(error);
+        });
+    }
   };
 
   return (
     <>
       <Fragment>
+      <ToastContainer />
+        <h1>Students</h1>
+        <div className="divFN">First name</div>
+        <div className="divLN">Last name</div>
+        <div className="divAge">Age</div>
         <Container>
           <Row>
-            <Col>
-              <Form.Control
-                className="lastName"
-                type="text"
-                placeholder="Last Name"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-              />
-            </Col>
             <Col>
               <Form.Control
                 className="firstName"
@@ -189,6 +256,15 @@ const CRUD = () => {
                 placeholder="First Name"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
+              />
+            </Col>
+            <Col>
+              <Form.Control
+                className="lastName"
+                type="text"
+                placeholder="Last Name"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
               />
             </Col>
             <Col>
@@ -233,8 +309,8 @@ const CRUD = () => {
           <thead>
             <tr>
               <th>ID</th>
-              <th>LAST NAME</th>
               <th>FIRST NAME</th>
+              <th>LAST NAME</th>
               <th>AGE</th>
               <th>IS STUDENT</th>
               <th>Actions</th>
@@ -245,8 +321,8 @@ const CRUD = () => {
               data.map((item, index) => (
                 <tr key={index}>
                   <td>{item.id}</td>
-                  <td>{item.lastName}</td>
                   <td>{item.firstName}</td>
+                  <td>{item.lastName}</td>
                   <td>{item.age}</td>
                   <td>{item.isStudent}</td>
                   <td colSpan={2}>
@@ -278,19 +354,10 @@ const CRUD = () => {
 
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
-            <Modal.Title>Edit</Modal.Title>
+            <Modal.Title>Edit student data</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Container>
-              <Row>
-                <input
-                  className="editLastName"
-                  type="text"
-                  placeholder="Last Name"
-                  value={editLastName}
-                  onChange={(e) => setEditLastName(e.target.value)}
-                />
-              </Row>
               <Row>
                 <input
                   className="editFirstName"
@@ -300,7 +367,15 @@ const CRUD = () => {
                   onChange={(e) => setEditFirstName(e.target.value)}
                 />
               </Row>
-
+              <Row>
+                <input
+                  className="editLastName"
+                  type="text"
+                  placeholder="Last Name"
+                  value={editLastName}
+                  onChange={(e) => setEditLastName(e.target.value)}
+                />
+              </Row>
               <Row>
                 <input
                   className="editAge"
