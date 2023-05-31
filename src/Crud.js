@@ -10,50 +10,25 @@ import axios from "axios";
 import Form from "react-bootstrap/Form";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Toast } from "bootstrap";
 
 const CRUD = () => {
-  const empdata = [
-    //sters
-    {
-      id: 1,
-      firstName: "Emily",
-      lastName: "Johnson",
-      age: 28,
-      isStudent: 1,
-    },
-    {
-      id: 2,
-      firstName: "Marcus",
-      lastName: "Lee",
-      age: 33,
-      isStudent: 0,
-    },
-    {
-      id: 3,
-      firstName: "Isabella",
-      lastName: "Rodriguez",
-      age: 21,
-      isStudent: 1,
-    },
-  ];
 
   const [data, setData] = useState([]);
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [age, setAge] = useState("");
-  const [isStudent, setIsStudent] = useState(0);
+  const [isStudent, setIsStudent] = useState(false);
 
   const [editID, setEditID] = useState("");
   const [editFirstName, setEditFirstName] = useState("");
   const [editLastName, setEditLastName] = useState("");
   const [editAge, setEditAge] = useState("");
-  const [editIsStudent, setEditIsStudent] = useState(0);
+  const [editIsStudent, setEditIsStudent] = useState(false);
 
   useEffect(() => {
-    setData(empdata);
-    //getData();
+   
+    getData();
   }, []);
 
   const [show, setShow] = useState(false);
@@ -69,16 +44,16 @@ const CRUD = () => {
 
   const setHandleIsStudent = (e) => {
     if (e.target.checked) {
-      setIsStudent(1);
+      setIsStudent(true);
     } else {
-      setIsStudent(0);
+      setIsStudent(false);
     }
   };
   const setEditHandleIsStudent = (e) => {
     if (e.target.checked) {
-      setEditIsStudent(1);
+      setEditIsStudent(true);
     } else {
-      setEditIsStudent(0);
+      setEditIsStudent(false);
     }
   };
 
@@ -107,9 +82,9 @@ const CRUD = () => {
   }
 
   const handleCreate = () => {
-    const url = "url";
-    const newData = {
-      id: data[data.length - 1].id + 1, // trebuie sters
+    
+    const url = "https://localhost:7269/api/Student/PostStudent/";
+    const newData1 = {
       firstName: firstName,
       lastName: lastName,
       age: age,
@@ -133,13 +108,12 @@ const CRUD = () => {
     else if (age.indexOf(".") !== -1)
       alert("Age is accepted only as an integer!");
     else {
-      axios.post(url, newData).then((result) => {
+      axios.post(url, newData1).then((result) => {
         toast.success("Student successfully added.")
-        //getData();
+        getData();
       }).catch((error) => {
         toast.error(error);
       });
-
       setFirstName("");
       setLastName("");
       setAge("");
@@ -149,7 +123,7 @@ const CRUD = () => {
 
   const getData = () => {
     axios
-      .get(`url`)
+      .get(`https://localhost:7269/api/Student/GetStudents`)
       .then((result) => {
         setData(result.data);
       })
@@ -162,12 +136,12 @@ const CRUD = () => {
     
     handleShow();
     axios
-      .get(`url/${id}`)
+      .get(`https://localhost:7269/api/Student/GetStudent/${id}`)
       .then((result) => {
         setEditFirstName(result.data.firstName);
-        setEditFirstName(result.data.lastName);
-        setEditFirstName(result.data.age);
-        setEditFirstName(result.data.isStudent);
+        setEditLastName(result.data.lastName);
+        setEditAge(result.data.age);
+        setEditIsStudent(result.data.isStudent);
         setEditID(id);
       })
       .catch((error) => {
@@ -176,9 +150,10 @@ const CRUD = () => {
   };
 
   const handleUpdate = () => {
-    const url = ``;
-
+    const url = `https://localhost:7269/api/Student/PutStudent/${editID}`;
+    toast.success(editID);
     const newData = {
+      "id":editID,
       "firstName": editFirstName,
       "lastName": editLastName,
       "age": editAge,
@@ -206,16 +181,14 @@ const CRUD = () => {
       alert("One of the input contains white spaces whith text");
     else if (isInputOnlyNumbers(editAge) === false)
       alert("Age is not a number");
-    else if (editAge <= 0 || editAge > 150) alert("Age is not a correct value");
+    else if (editAge <= 0 || editAge > 100) alert("Age is not a correct value");
     else if (editAge.indexOf(".") !== -1)
       alert("Age is accepted only as an integer!");
     else {
-      axios
-        .put(url, newData)
-        .then(() => {
+      axios.put(url,newData).then(() => {
           toast.success("Student successfully updated.");
           getData();
-          //handleClose();
+          handleClose();
         })
         .catch((error) => {
           toast.error(error);
@@ -226,7 +199,7 @@ const CRUD = () => {
   const handleDelete = (id) => {
     if (window.confirm("Are you sure you want to delete this student?")) {
       axios
-        .delete(`url/${id}`)
+        .delete(`https://localhost:7269/api/Student/DeleteEmployee/${id}`)
         .then((result) => {
           if (result.status === 200) {
             toast.success("Student has been delete.")
@@ -285,7 +258,7 @@ const CRUD = () => {
                       type={type}
                       id={`default-${type}`}
                       label={`Is Student`}
-                      checked={isStudent === 1 ? true : false}
+                      checked={isStudent === true ? true : false}
                       onChange={(e) => setHandleIsStudent(e)}
                       value={isStudent}
                     />
@@ -319,6 +292,7 @@ const CRUD = () => {
           <tbody>
             {data && data.length > 0 ? (
               data.map((item, index) => (
+                                
                 <tr key={index}>
                   <td>{item.id}</td>
                   <td>{item.firstName}</td>
@@ -392,7 +366,7 @@ const CRUD = () => {
                       className="editCheckbox"
                       type={type}
                       label={`Is Student`}
-                      checked={editIsStudent === 1 ? true : false}
+                      checked={editIsStudent === true ? true : false}
                       onChange={(e) => setEditHandleIsStudent(e)}
                       value={editIsStudent}
                     />
