@@ -8,26 +8,24 @@ import Col from "react-bootstrap/Col";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 import Form from "react-bootstrap/Form";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const CRUD = () => {
-
   const [data, setData] = useState([]);
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [age, setAge] = useState("");
-  const [isStudent, setIsStudent] = useState(false);
+  const [isBudget, setIsBudget] = useState("NO");
 
   const [editID, setEditID] = useState("");
   const [editFirstName, setEditFirstName] = useState("");
   const [editLastName, setEditLastName] = useState("");
   const [editAge, setEditAge] = useState("");
-  const [editIsStudent, setEditIsStudent] = useState(false);
+  const [editBudget, setEditBudget] = useState("NO");
 
   useEffect(() => {
-   
     getData();
   }, []);
 
@@ -38,22 +36,22 @@ const CRUD = () => {
     setEditFirstName("");
     setEditLastName("");
     setEditAge("");
-    setEditIsStudent(false);
+    setEditBudget(false);
   };
   const handleShow = () => setShow(true);
 
-  const setHandleIsStudent = (e) => {
+  const setHandleIsBudget = (e) => {
     if (e.target.checked) {
-      setIsStudent(true);
+      setIsBudget("YES");
     } else {
-      setIsStudent(false);
+      setIsBudget("NO");
     }
   };
-  const setEditHandleIsStudent = (e) => {
+  const setEditHandleIsBudget = (e) => {
     if (e.target.checked) {
-      setEditIsStudent(true);
+      setEditBudget("YES");
     } else {
-      setEditIsStudent(false);
+      setEditBudget("NO");
     }
   };
 
@@ -82,13 +80,12 @@ const CRUD = () => {
   }
 
   const handleCreate = () => {
-    
     const url = "https://localhost:7269/api/Student/PostStudent/";
     const newData1 = {
       firstName: firstName,
       lastName: lastName,
       age: age,
-      isStudent: isStudent,
+      isBudget: isBudget,
     };
 
     if (isInputBlank(firstName) || isInputBlank(lastName) || isInputBlank(age))
@@ -108,16 +105,19 @@ const CRUD = () => {
     else if (age.indexOf(".") !== -1)
       alert("Age is accepted only as an integer!");
     else {
-      axios.post(url, newData1).then((result) => {
-        toast.success("Student successfully added.")
-        getData();
-      }).catch((error) => {
-        toast.error(error);
-      });
+      axios
+        .post(url, newData1)
+        .then((result) => {
+          toast.success("Student successfully added.");
+          getData();
+        })
+        .catch((error) => {
+          toast.error(error);
+        });
       setFirstName("");
       setLastName("");
       setAge("");
-      setIsStudent(false);
+      setIsBudget("NO");
     }
   };
 
@@ -133,7 +133,6 @@ const CRUD = () => {
   };
 
   const handleEdit = (id) => {
-    
     handleShow();
     axios
       .get(`https://localhost:7269/api/Student/GetStudent/${id}`)
@@ -141,7 +140,7 @@ const CRUD = () => {
         setEditFirstName(result.data.firstName);
         setEditLastName(result.data.lastName);
         setEditAge(result.data.age);
-        setEditIsStudent(result.data.isStudent);
+        setEditBudget(result.data.isBudget);
         setEditID(id);
       })
       .catch((error) => {
@@ -153,11 +152,11 @@ const CRUD = () => {
     const url = `https://localhost:7269/api/Student/PutStudent/${editID}`;
     toast.success(editID);
     const newData = {
-      "id":editID,
-      "firstName": editFirstName,
-      "lastName": editLastName,
-      "age": editAge,
-      "isStudent": editIsStudent,
+      id: editID,
+      firstName: editFirstName,
+      lastName: editLastName,
+      age: editAge,
+      isBudget: editBudget,
     };
 
     if (
@@ -185,7 +184,9 @@ const CRUD = () => {
     else if (editAge.indexOf(".") !== -1)
       alert("Age is accepted only as an integer!");
     else {
-      axios.put(url,newData).then(() => {
+      axios
+        .put(url, newData)
+        .then(() => {
           toast.success("Student successfully updated.");
           getData();
           handleClose();
@@ -202,7 +203,7 @@ const CRUD = () => {
         .delete(`https://localhost:7269/api/Student/DeleteEmployee/${id}`)
         .then((result) => {
           if (result.status === 200) {
-            toast.success("Student has been delete.")
+            toast.success("Student has been delete.");
             getData();
           }
         })
@@ -215,7 +216,7 @@ const CRUD = () => {
   return (
     <>
       <Fragment>
-      <ToastContainer />
+        <ToastContainer />
         <h1>Students</h1>
         <div className="divFN">First name</div>
         <div className="divLN">Last name</div>
@@ -254,13 +255,13 @@ const CRUD = () => {
                 {["checkbox"].map((type) => (
                   <div key={`default-${type}`} className="mb-3">
                     <Form.Check
-                      className="isStudent"
+                      className="isBudget"
                       type={type}
                       id={`default-${type}`}
-                      label={`Is Student`}
-                      checked={isStudent === true ? true : false}
-                      onChange={(e) => setHandleIsStudent(e)}
-                      value={isStudent}
+                      label={`Budget`}
+                      checked={isBudget === "YES" ? true : false}
+                      onChange={(e) => setHandleIsBudget(e)}
+                      value={isBudget}
                     />
                   </div>
                 ))}
@@ -285,20 +286,19 @@ const CRUD = () => {
               <th>FIRST NAME</th>
               <th>LAST NAME</th>
               <th>AGE</th>
-              <th>IS STUDENT</th>
+              <th>BUDGET</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
             {data && data.length > 0 ? (
               data.map((item, index) => (
-                                
                 <tr key={index}>
                   <td>{item.id}</td>
                   <td>{item.firstName}</td>
                   <td>{item.lastName}</td>
                   <td>{item.age}</td>
-                  <td>{item.isStudent}</td>
+                  <td>{item.isBudget}</td>
                   <td colSpan={2}>
                     <Button
                       className="btnEdit"
@@ -365,10 +365,10 @@ const CRUD = () => {
                     <Form.Check
                       className="editCheckbox"
                       type={type}
-                      label={`Is Student`}
-                      checked={editIsStudent === true ? true : false}
-                      onChange={(e) => setEditHandleIsStudent(e)}
-                      value={editIsStudent}
+                      label={`Budget`}
+                      checked={editBudget === "YES" ? true : false}
+                      onChange={(e) => setEditHandleIsBudget(e)}
+                      value={editBudget}
                     />
                   </div>
                 ))}
