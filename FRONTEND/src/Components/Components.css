@@ -1,0 +1,11 @@
+.NavBarImage{
+    position: relative;
+    margin-left: 0px;
+}
+
+.NavBarHeader{
+    position: absolute;
+    margin-left: 150px;
+    color: rgb(255, 101, 101);
+}
+
