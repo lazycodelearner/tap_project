@@ -1,5 +1,5 @@
 import "./App.css";
-import CRUD from "./Crud";
+import CRUD from "./Pages/CRUD/Crud";
 import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
   return (
