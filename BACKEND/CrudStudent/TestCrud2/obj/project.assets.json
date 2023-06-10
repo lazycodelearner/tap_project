@@ -10371,19 +10371,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\DEAC\\.nuget\\packages\\": {}
+    "C:\\Users\\40749\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Facultate\\SEM2\\TAP\\tapv2\\tap_project\\BACKEND\\CrudStudent\\TestCrud2\\TestCrud2.csproj",
+      "projectUniqueName": "C:\\Users\\40749\\source\\repos\\CrudStudent\\TestCrud2\\TestCrud2.csproj",
       "projectName": "TestCrud2",
-      "projectPath": "D:\\Facultate\\SEM2\\TAP\\tapv2\\tap_project\\BACKEND\\CrudStudent\\TestCrud2\\TestCrud2.csproj",
-      "packagesPath": "C:\\Users\\DEAC\\.nuget\\packages\\",
-      "outputPath": "D:\\Facultate\\SEM2\\TAP\\tapv2\\tap_project\\BACKEND\\CrudStudent\\TestCrud2\\obj\\",
+      "projectPath": "C:\\Users\\40749\\source\\repos\\CrudStudent\\TestCrud2\\TestCrud2.csproj",
+      "packagesPath": "C:\\Users\\40749\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\40749\\source\\repos\\CrudStudent\\TestCrud2\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\DEAC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\40749\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -10397,8 +10397,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "D:\\Facultate\\SEM2\\TAP\\tapv2\\tap_project\\BACKEND\\CrudStudent\\CrudStudent\\CrudStudent.csproj": {
-              "projectPath": "D:\\Facultate\\SEM2\\TAP\\tapv2\\tap_project\\BACKEND\\CrudStudent\\CrudStudent\\CrudStudent.csproj"
+            "C:\\Users\\40749\\source\\repos\\CrudStudent\\CrudStudent\\CrudStudent.csproj": {
+              "projectPath": "C:\\Users\\40749\\source\\repos\\CrudStudent\\CrudStudent\\CrudStudent.csproj"
             }
           }
         }
@@ -10450,7 +10450,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -2,7 +2,6 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import "./Components.css";
-import { Link } from "react-router-dom";
 
 function NavbarStudent() {
   return (
@@ -10,18 +9,17 @@ function NavbarStudent() {
       <Navbar bg="dark" variant="dark">
         <Container>
           <Navbar.Brand href="#home">
-            <Link to="/">
-              <img
-                alt="University Logo"
-                src="/universityLogo.jpg"
-                width="100"
-                height="100"
-                className="NavBarImage"
-              />
-            </Link>
+            <img
+              alt="University Logo"
+              src="/universityLogo.jpg"
+              width="100"
+              height="100"
+              className="NavBarImage"
+            />{" "}
           </Navbar.Brand>
           <h1 className="NavBarHeader">Students</h1>
         </Container>
+        
       </Navbar>
     </>
   );
