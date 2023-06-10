@@ -14,6 +14,7 @@
   margin-bottom: 100px;
   background-color: #ffffff;
   border: 5px solid #126dc8 !important;
+  border-radius: 25px !important;
   text-align: center;
 }
 
@@ -24,6 +25,7 @@
   margin-bottom: 100px;
   background-color: #ffffff;
   border: 5px solid #126dc8 !important;
+  border-radius: 25px !important;
   text-align: center;
 }
 
@@ -34,6 +36,7 @@
   height: 30px;
   width: 30px;
   border: 5px solid #126dc8;
+  border-radius: 25px !important;
 }
 
 .addButton {
@@ -43,7 +46,7 @@
 
 .editInput {
   margin-bottom: 10px;
-  border-radius: 0.25rem;
+  border-radius: 15px;
 }
 
 .editCheckbox input[type="checkbox"] {
@@ -52,6 +55,7 @@
   width: 20px;
   height: 20px;
   margin-top: 0px;
+  border-radius: 25px !important;
 }
 
 .modal-content {

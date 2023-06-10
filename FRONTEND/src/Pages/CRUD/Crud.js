@@ -70,6 +70,10 @@ function CRUD() {
     return !isNaN(value);
   }
 
+  function nameContainsNumbers(text) {
+    return /\d/.test(text);
+  }
+
   function hasSpecialCharacters(str) {
     const regex = /[!@#$%^&*(),.?":{}|<>_+=;'/]/g;
     return regex.test(str) || /^-+$/.test(str.toString());
@@ -97,6 +101,8 @@ function CRUD() {
       alert("First name or last name has special characters.");
     else if (isNumber(firstName) || isNumber(lastName))
       alert("Names can not be numbers");
+    else if (nameContainsNumbers(firstName) || nameContainsNumbers(lastName))
+      alert("Names can not contain numbers");
     else if (
       valueContainsWhiteSpaces(firstName) === false ||
       valueContainsWhiteSpaces(lastName) === false ||
@@ -175,6 +181,11 @@ function CRUD() {
     else if (isNumber(editFirstName) || isNumber(editLastName))
       alert("Names can not be numbers");
     else if (
+      nameContainsNumbers(editFirstName) ||
+      nameContainsNumbers(editLastName)
+    )
+      alert("Names can not contain numbers");
+    else if (
       valueContainsWhiteSpaces(editFirstName) === false ||
       valueContainsWhiteSpaces(editLastName) === false ||
       valueContainsWhiteSpaces(age) === false
@@ -219,7 +230,7 @@ function CRUD() {
     <>
       <Fragment>
         <ToastContainer />
-        <Navbar></Navbar>
+        <Navbar text="Students"></Navbar>
         <Container>
           <Row>
             <Col>
@@ -227,6 +238,7 @@ function CRUD() {
               <Form.Control
                 className="inputName"
                 type="text"
+                id="first_name"
                 placeholder="First Name"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}

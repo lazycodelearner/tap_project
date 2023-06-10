@@ -1,83 +1,57 @@
-import React, { useState, useEffect } from "react";
-import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
-import { Grid } from "@material-ui/core";
+import React, { useState, useEffect, Fragment } from "react";
 import Navbar from "../../Components/Navbar";
+import SubjectsList from "../../Components/SubjectsList";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Subjects() {
-  const [cards, setCards] = useState([]); // Array of cards
-  const [isLoading, setIsLoading] = useState(false); // Loading state
+  const [data, setData] = useState([]);
+  const [studentData, setStudentData] = useState([]);
+
+  const [subjectName, setsubjectName] = useState("");
+  const [mark, setMark] = useState("");
+  const [Budget, setBudget] = useState("NO");
+
+  const [editID, setEditID] = useState("");
+  const [editSubjectName, setEditSubjectName] = useState("");
+  const [editMark, setEditMark] = useState("");
+
+  const getData = () => {
+    axios
+      .get(`https://localhost:7151/api/Subject`)
+      .then((result) => {
+        setData(result.data);
+      })
+      .catch((error) => {
+        toast.error(error.toString());
+      });
+  };
+
+  const getStudentData = () => {
+    axios
+      .get(`https://localhost:7151/api/Student/GetStudent`)
+      .then((result) => {
+        setStudentData(result.data);
+      })
+      .catch((error) => {
+        toast.error(error.toString());
+      });
+  };
 
   useEffect(() => {
-    // Simulating API call to fetch initial set of cards
-    fetchCards();
+    getData();
+    getStudentData();
   }, []);
-
-  useEffect(() => {
-    // Add event listener to detect scroll position
-    window.addEventListener("scroll", handleScroll);
-
-    // Clean up the event listener when the component unmounts
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  const fetchCards = () => {
-    // Simulating API call to fetch more cards
-    // Append the new cards to the existing card array
-    setIsLoading(true);
-    setTimeout(() => {
-      const newCards = [...cards, ...getNewCards()];
-      setCards(newCards);
-      setIsLoading(false);
-    }, 1000);
-  };
-
-  const handleScroll = () => {
-    // Check if the user has reached the bottom of the scrollable area
-    if (
-      window.innerHeight + document.documentElement.scrollTop ===
-      document.documentElement.offsetHeight
-    ) {
-      fetchCards();
-    }
-  };
-
-  const getNewCards = () => {
-    // Simulating fetching new cards
-    // You can replace this with your own logic or API call
-    const newCards = [];
-    for (let i = 0; i < 10; i++) {
-      newCards.push(<div className="card">Card {cards.length + i + 1}</div>);
-    }
-    return newCards;
-  };
 
   return (
     <>
-      <Navbar />
-      <Grid item xs={12} sm={6} md={4} lg={3}>
-        {cards.map((card, index) => (
-          <div key={index} className="card">
-            <Card style={{ width: "18rem" }}>
-              <Card.Img
-                variant="top"
-                src="https://img.gamedistribution.com/8e5e5f3b0e2b455fa4bcd53ddcf90fd0-512x512.jpeg"
-              />
-              <Card.Body>
-                <Card.Title>Card Title</Card.Title>
-                <Card.Text>
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </Card.Text>
-                <Button variant="primary">Go somewhere</Button>
-              </Card.Body>
-            </Card>
-          </div>
-        ))}
-        {isLoading && <div className="loading">Loading...</div>}
-      </Grid>
+      <Fragment>
+        <ToastContainer />
+
+        <Navbar text={studentData.lastName + studentData.firstName} />
+        <SubjectsList></SubjectsList>
+      </Fragment>
     </>
   );
 }
