@@ -1,11 +1,55 @@
-.NavBarImage{
-    position: relative;
-    margin-left: 0px;
+.NavBarImage {
+  position: relative;
+  margin-left: 0px;
 }
 
-.NavBarHeader{
-    position: absolute;
-    margin-left: 150px;
-    color: rgb(255, 101, 101);
+.NavBarHeader {
+  position: absolute;
+  margin-left: 150px;
+  color: rgb(255, 101, 101);
 }
 
+.SubjectsListDiv {
+  position: relative;
+  top: 50px !important;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.mx-auto {
+  width: 250px !important;
+  height: 250px !important;
+}
+
+.SubjectsCardDiv {
+  position: relative;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.NavDropDown {
+  color: brown;
+  font-size: 30px !important;
+}
+
+.dropDownSubjectForm {
+  text-align: center !important;
+  padding: 0.375rem 4.75rem !important;
+  size: 300px !important;
+  width: 400px !important;
+  padding-right: 50px;
+  padding-left: 50px;
+}
+
+.dropDownMarkForm {
+  text-align: center !important;
+  padding: 0.375rem 4.75rem !important;
+  size: 300px !important;
+  width: 400px !important;
+  padding-right: 50px;
+  padding-left: 50px;
+}

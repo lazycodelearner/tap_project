@@ -11,7 +11,7 @@ import Form from "react-bootstrap/Form";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Navbar from "../../Components/Navbar";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function CRUD() {
   const [data, setData] = useState([]);
@@ -213,7 +213,7 @@ function CRUD() {
   const handleDelete = (id) => {
     if (window.confirm("Are you sure you want to delete this student?")) {
       axios
-        .delete(`https://localhost:7151/api/Student/DeleteEmployee/${id}`)
+        .delete(`https://localhost:7151/api/Student/DeleteStudent/${id}`)
         .then((result) => {
           if (result.status === 200) {
             toast.success("Student has been delete.");
@@ -226,6 +226,17 @@ function CRUD() {
     }
   };
 
+  const navigate = useNavigate();
+  const toSubjects = (studentId, firstName, lastName) => {
+    navigate("/Subjects", {
+      state: {
+        studentId: { studentId },
+        studentFirstName: { firstName },
+        studentLastName: { lastName },
+      },
+    });
+  };
+
   return (
     <>
       <Fragment>
@@ -234,20 +245,19 @@ function CRUD() {
         <Container>
           <Row>
             <Col>
-              <h1 className="h1Label">First name</h1>
+              <h1 className="h1LabelCrud">First name</h1>
               <Form.Control
-                className="inputName"
+                className="inputNameCrud"
                 type="text"
-                id="first_name"
                 placeholder="First Name"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
               />
             </Col>
             <Col>
-              <h1 className="h1Label">Last name</h1>
+              <h1 className="h1LabelCrud">Last name</h1>
               <Form.Control
-                className="inputName"
+                className="inputNameCrud"
                 type="text"
                 placeholder="Last Name"
                 value={lastName}
@@ -255,9 +265,9 @@ function CRUD() {
               />
             </Col>
             <Col>
-              <h1 className="h1Label">Age</h1>
+              <h1 className="h1LabelCrud">Age</h1>
               <Form.Control
-                className="age"
+                className="ageCrud"
                 type="text"
                 placeholder="Age"
                 value={age}
@@ -266,9 +276,9 @@ function CRUD() {
             </Col>
             <Col>
               <Form>
-                <h1 className="h1Label">Budget</h1>
+                <h1 className="h1LabelCrud">Budget</h1>
                 <Form.Check
-                  className="isBudget"
+                  className="isBudgetCrud"
                   checked={Budget === "YES" ? true : false}
                   onChange={(e) => setHandleBudget(e)}
                 />
@@ -277,7 +287,7 @@ function CRUD() {
             <Col>
               <Button
                 variant="success"
-                className="addButton"
+                className="addButtonCrud"
                 onClick={() => handleCreate()}
               >
                 Add New Student
@@ -307,7 +317,16 @@ function CRUD() {
                   <td>{item.age}</td>
                   <td>{item.budget}</td>
                   <td colSpan={3}>
-                    <Button variant="warning">
+                    <Button
+                      variant="warning"
+                      onClick={() => {
+                        toSubjects(
+                          item.studentId,
+                          item.firstName,
+                          item.lastName
+                        );
+                      }}
+                    >
                       <Link to="/Subjects">Subjects</Link>
                     </Button>
                     &nbsp;
@@ -331,7 +350,7 @@ function CRUD() {
               ))
             ) : (
               <tr>
-                <td colSpan="3">No data found.</td>
+                <td colSpan="3">No students found.</td>
               </tr>
             )}
           </tbody>

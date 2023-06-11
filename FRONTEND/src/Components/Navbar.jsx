@@ -4,7 +4,7 @@ import Navbar from "react-bootstrap/Navbar";
 import "./Components.css";
 import { Link } from "react-router-dom";
 
-function NavbarStudent(props) {
+const NavbarStudent = (text) => {
   return (
     <>
       <Navbar bg="dark" variant="dark">
@@ -20,11 +20,11 @@ function NavbarStudent(props) {
               />
             </Link>
           </Navbar.Brand>
-          <h1 className="NavBarHeader">{props.text}</h1>
+          <h1 className="NavBarHeader">{text.text}</h1>
         </Container>
       </Navbar>
     </>
   );
-}
+};
 
 export default NavbarStudent;

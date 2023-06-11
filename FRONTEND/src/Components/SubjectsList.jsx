@@ -1,21 +1,30 @@
 import React from "react";
 import SubjectsCard from "./SubjectsCard";
+import VariantsExample from "./VariantsExample";
 
-function SubjectsList(SubjectsData) {
+const SubjectsList = ({ subjectsData }, studentId) => {
+  console.log(subjectsData);
   return (
-    <div className="subjects_list">
-      {/* {SubjectsData.map((subject) => {
-        return (
-          <SubjectsCard
-            key={subject.id}
-            image={subject.image}
-            name={subject.name}
-            mark={subject.current_price}
-          />
-        );
-      })} */}
+    <div className="SubjectsListDiv">
+      {subjectsData.length >= 1 ? (
+        subjectsData.map((subject, index) => {
+          return (
+            <SubjectsCard
+              id={subject.subjectId}
+              subjectNameParameter={subject.subjectName}
+              mark={subject.mark}
+              studentId={subject.studentId}
+            />
+          );
+        })
+      ) : (
+        <>
+          <VariantsExample></VariantsExample>
+          <h1>No data found</h1>
+        </>
+      )}
     </div>
   );
-}
+};
 
 export default SubjectsList;

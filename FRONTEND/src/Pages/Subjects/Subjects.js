@@ -4,22 +4,31 @@ import SubjectsList from "../../Components/SubjectsList";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useLocation } from "react-router-dom";
+import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import DropDownMark from "../../Components/DropDownMark";
+import DropDownSubject from "../../Components/DropDownSubject";
+import "./Subjects.css";
 
 function Subjects() {
   const [data, setData] = useState([]);
-  const [studentData, setStudentData] = useState([]);
+  const [subjectName, setSubjectName] = useState("Subject Name");
+  const [Mark, setMark] = useState("Subject Mark");
 
-  const [subjectName, setsubjectName] = useState("");
-  const [mark, setMark] = useState("");
-  const [Budget, setBudget] = useState("NO");
+  const location = useLocation();
 
-  const [editID, setEditID] = useState("");
-  const [editSubjectName, setEditSubjectName] = useState("");
-  const [editMark, setEditMark] = useState("");
+  useEffect(() => {
+    getData();
+  }, []);
 
   const getData = () => {
     axios
-      .get(`https://localhost:7151/api/Subject`)
+      .get(
+        `https://localhost:7151/api/Subject/GetSubjectsByStudentId/${location.state.studentId.studentId}`
+      )
       .then((result) => {
         setData(result.data);
       })
@@ -28,29 +37,98 @@ function Subjects() {
       });
   };
 
-  const getStudentData = () => {
-    axios
-      .get(`https://localhost:7151/api/Student/GetStudent`)
-      .then((result) => {
-        setStudentData(result.data);
-      })
-      .catch((error) => {
-        toast.error(error.toString());
-      });
+  const handleCreate = () => {
+    const url = "https://localhost:7151/api/Subject/PostSubject";
+    const newData = {
+      subjectName: subjectName,
+      mark: Mark,
+      studentId: location.state.studentId.studentId,
+    };
+    console.log(
+      subjectName + " " + Mark + " " + location.state.studentId.studentId
+    );
+    var ok = true;
+    data.map((subject, index) => {
+      if (subject.subjectName === subjectName) ok = false;
+      return 0;
+    });
+
+    if (ok === false) alert("Subject already exist in database");
+    else if (Mark === "Subject Mark" || subjectName === "Subject Name")
+      alert("Subject Name not choosed or Mark not choosed");
+    else {
+      axios
+        .post(url, newData)
+        .then((result) => {
+          toast.success("Subject successfully added.");
+          getData();
+        })
+        .catch((error) => {
+          toast.error(error.toString());
+        });
+    }
   };
 
-  useEffect(() => {
-    getData();
-    getStudentData();
-  }, []);
+  const sendDataToParentSubject = (index) => {
+    // the callback. Use a better name
+    console.log(index);
+    setSubjectName(index);
+  };
+
+  const sendDataToParentMark = (index) => {
+    // the callback. Use a better name
+    console.log(index);
+    setMark(index);
+  };
 
   return (
     <>
       <Fragment>
         <ToastContainer />
+        <Navbar
+          text={
+            location.state.studentFirstName.firstName +
+            " " +
+            location.state.studentLastName.lastName
+          }
+        />
 
-        <Navbar text={studentData.lastName + studentData.firstName} />
-        <SubjectsList></SubjectsList>
+        <Container className="container">
+          <Row>
+            <Col className="subjectColumn">
+              <h1 className="h1Label">Subject Name</h1>
+              <div className="formDiv">
+                <DropDownSubject
+                  props={subjectName}
+                  sendDataToParentSubject={sendDataToParentSubject}
+                ></DropDownSubject>
+              </div>
+            </Col>
+            <Col className="subjectColumn">
+              <h1 className="h1Label">Mark</h1>
+              <div className="formDiv">
+                <DropDownMark
+                  props={Mark}
+                  sendDataToParentMark={sendDataToParentMark}
+                ></DropDownMark>
+              </div>
+            </Col>
+            <Col className="subjectColumn">
+              <Button
+                variant="success"
+                className="addButton"
+                onClick={() => handleCreate()}
+              >
+                Add New Subject
+              </Button>
+            </Col>
+          </Row>
+        </Container>
+
+        <SubjectsList
+          subjectsData={data}
+          studentId={location.state.studentId.studentId}
+        ></SubjectsList>
       </Fragment>
     </>
   );

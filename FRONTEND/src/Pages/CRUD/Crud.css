@@ -1,11 +1,11 @@
-.h1Label {
+.h1LabelCrud {
   position: relative;
   top: 50px;
   font-size: 30px !important;
   text-align: center;
 }
 
-.inputName {
+.inputNameCrud {
   display: flex;
   width: 300px !important;
   position: relative;
@@ -18,7 +18,7 @@
   text-align: center;
 }
 
-.age {
+.ageCrud {
   width: 200px !important;
   position: relative;
   margin-top: 150px;
@@ -29,7 +29,7 @@
   text-align: center;
 }
 
-.isBudget input[type="checkbox"] {
+.isBudgetCrud input[type="checkbox"] {
   position: relative;
   margin-top: 150px;
   margin-bottom: 100px;
@@ -39,9 +39,11 @@
   border-radius: 25px !important;
 }
 
-.addButton {
+.addButtonCrud {
   position: relative;
-  margin-top: 185px !important;
+  margin-top: 190px !important;
+  margin-left: 60px;
+  width: 180px;
 }
 
 .editInput {

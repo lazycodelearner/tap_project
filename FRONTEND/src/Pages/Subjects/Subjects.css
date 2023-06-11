@@ -1,0 +1,51 @@
+.h1Label {
+  position: relative;
+  margin-top: 50px;
+  margin-bottom: 100px;
+  font-size: 30px !important;
+  justify-content: center;
+  text-align: center;
+}
+
+.subjectColumn {
+  width: 400px;
+  justify-content: center !important;
+  text-align: center !important;
+}
+
+.inputName {
+  display: flex;
+  width: 300px !important;
+  position: relative;
+  margin-top: 0px !important;
+  margin-bottom: 100px;
+  background-color: #ffffff;
+  border: 5px solid #126dc8 !important;
+  border-radius: 105px !important;
+  text-align: center;
+}
+
+.mark {
+  display: flex;
+  width: 150px !important;
+  position: relative;
+  margin-top: 0px !important;
+  margin-bottom: 150px;
+  background-color: #ffffff;
+  border: 5px solid #126dc8 !important;
+  border-radius: 105px !important;
+  text-align: center;
+}
+
+.addButton {
+  position: relative;
+  margin-top: 190px !important;
+  margin-left: 60px;
+  width: 180px;
+}
+
+.formDiv {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
