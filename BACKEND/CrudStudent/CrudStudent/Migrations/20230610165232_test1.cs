@@ -2,26 +2,28 @@
 
 #nullable disable
 
-namespace CrudStudent.Migrations.Subject
+namespace CrudStudent.Migrations
 {
     /// <inheritdoc />
-    public partial class first : Migration
+    public partial class test1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Subjects",
+                name: "Student",
                 columns: table => new
                 {
-                    SubjectId = table.Column<int>(type: "int", nullable: false)
+                    StudentId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    materie = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    nota = table.Column<int>(type: "int", nullable: false)
+                    firstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    lastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    age = table.Column<int>(type: "int", nullable: false),
+                    Budget = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Subjects", x => x.SubjectId);
+                    table.PrimaryKey("PK_Student", x => x.StudentId);
                 });
         }
 
@@ -29,7 +31,7 @@ namespace CrudStudent.Migrations.Subject
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Subjects");
+                name: "Student");
         }
     }
 }

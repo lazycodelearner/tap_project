@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CrudStudent.Controller
 {
-	[Route("api/[controller]")]
 	[ApiController]
-	public class SubjectController : ControllerBase
+    [Route("api/[controller]/[action]")]
+    public class SubjectController : ControllerBase
 	{
 		private readonly SubjectContext _subjectContext;
 		public SubjectController(SubjectContext subjectContext)
@@ -37,7 +37,22 @@ namespace CrudStudent.Controller
 			}
 			return subject;
 		}
-		[HttpPost]
+        [HttpGet("{id}")]
+        public ActionResult<IEnumerable<Subject>> GetSubjectsByStudentId(int id)
+        {
+            if (_subjectContext.Subjects == null)
+            {
+                return NotFound();
+            }
+            var subjects = _subjectContext.Subjects.Where(s => s.StudentId == id).ToList();
+   
+            if (subjects == null)
+            {
+                return NotFound();
+            }
+            return subjects;
+        }
+        [HttpPost]
 		public async Task<ActionResult<Student>> PostSubject(Subject subject)
 		{
 			_subjectContext.Subjects.Add(subject);
@@ -59,7 +74,7 @@ namespace CrudStudent.Controller
 			return Ok();
 		}
 		[HttpDelete("{id}")]
-		public async Task<ActionResult> DeleteEmployee(int id)
+		public async Task<ActionResult> DeleteSubject(int id)
 		{
 			if (_subjectContext.Subjects== null)
 			{

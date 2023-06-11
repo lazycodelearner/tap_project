@@ -10376,11 +10376,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Facultate\\SEM2\\TAP\\tapv2\\tap_project\\BACKEND\\CrudStudent\\TestCrud2\\TestCrud2.csproj",
+      "projectUniqueName": "D:\\Facultate\\SEM2\\TAP\\tap_project\\BACKEND\\CrudStudent\\TestCrud2\\TestCrud2.csproj",
       "projectName": "TestCrud2",
-      "projectPath": "D:\\Facultate\\SEM2\\TAP\\tapv2\\tap_project\\BACKEND\\CrudStudent\\TestCrud2\\TestCrud2.csproj",
+      "projectPath": "D:\\Facultate\\SEM2\\TAP\\tap_project\\BACKEND\\CrudStudent\\TestCrud2\\TestCrud2.csproj",
       "packagesPath": "C:\\Users\\DEAC\\.nuget\\packages\\",
-      "outputPath": "D:\\Facultate\\SEM2\\TAP\\tapv2\\tap_project\\BACKEND\\CrudStudent\\TestCrud2\\obj\\",
+      "outputPath": "D:\\Facultate\\SEM2\\TAP\\tap_project\\BACKEND\\CrudStudent\\TestCrud2\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\DEAC\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -10397,8 +10397,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "D:\\Facultate\\SEM2\\TAP\\tapv2\\tap_project\\BACKEND\\CrudStudent\\CrudStudent\\CrudStudent.csproj": {
-              "projectPath": "D:\\Facultate\\SEM2\\TAP\\tapv2\\tap_project\\BACKEND\\CrudStudent\\CrudStudent\\CrudStudent.csproj"
+            "D:\\Facultate\\SEM2\\TAP\\tap_project\\BACKEND\\CrudStudent\\CrudStudent\\CrudStudent.csproj": {
+              "projectPath": "D:\\Facultate\\SEM2\\TAP\\tap_project\\BACKEND\\CrudStudent\\CrudStudent\\CrudStudent.csproj"
             }
           }
         }

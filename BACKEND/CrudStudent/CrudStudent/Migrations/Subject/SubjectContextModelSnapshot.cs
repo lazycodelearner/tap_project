@@ -21,7 +21,7 @@ namespace CrudStudent.Migrations.Subject
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("CRUD.Models.Materie", b =>
+            modelBuilder.Entity("CRUD.Models.Subject", b =>
                 {
                     b.Property<int>("SubjectId")
                         .ValueGeneratedOnAdd()
@@ -29,56 +29,18 @@ namespace CrudStudent.Migrations.Subject
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SubjectId"));
 
+                    b.Property<int>("Mark")
+                        .HasColumnType("int");
+
                     b.Property<int>("StudentId")
                         .HasColumnType("int");
 
-                    b.Property<string>("materie")
+                    b.Property<string>("SubjectName")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("nota")
-                        .HasColumnType("int");
 
                     b.HasKey("SubjectId");
 
-                    b.HasIndex("StudentId");
-
                     b.ToTable("Subjects");
-                });
-
-            modelBuilder.Entity("CRUD.Models.Student", b =>
-                {
-                    b.Property<int>("StudentId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StudentId"));
-
-                    b.Property<string>("Budget")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("age")
-                        .HasColumnType("int");
-
-                    b.Property<string>("firstName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("lastName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("StudentId");
-
-                    b.ToTable("Student");
-                });
-
-            modelBuilder.Entity("CRUD.Models.Materie", b =>
-                {
-                    b.HasOne("CRUD.Models.Student", "Students")
-                        .WithMany()
-                        .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Students");
                 });
 #pragma warning restore 612, 618
         }

@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CrudStudent.Migrations.Subject
 {
     [DbContext(typeof(SubjectContext))]
-    [Migration("20230608170528_3")]
-    partial class _3
+    [Migration("20230610165239_test2")]
+    partial class test2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,14 +32,14 @@ namespace CrudStudent.Migrations.Subject
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SubjectId"));
 
+                    b.Property<int>("Mark")
+                        .HasColumnType("int");
+
                     b.Property<int>("StudentId")
                         .HasColumnType("int");
 
-                    b.Property<string>("materie")
+                    b.Property<string>("SubjectName")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("nota")
-                        .HasColumnType("int");
 
                     b.HasKey("SubjectId");
 

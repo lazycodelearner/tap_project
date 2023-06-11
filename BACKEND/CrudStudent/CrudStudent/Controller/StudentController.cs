@@ -59,7 +59,7 @@ namespace CRUD.Controllers
 			return Ok();
 		}
 		[HttpDelete("{id}")]
-		public async Task<ActionResult> DeleteEmployee(int id)
+		public async Task<ActionResult> DeleteStudent(int id)
 		{
 			if (_studentContext.Student == null)
 			{

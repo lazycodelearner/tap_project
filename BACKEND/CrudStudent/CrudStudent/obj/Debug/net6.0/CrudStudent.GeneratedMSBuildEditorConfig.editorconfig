@@ -9,37 +9,37 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = CrudStudent
 build_property.RootNamespace = CrudStudent
-build_property.ProjectDir = D:\Facultate\SEM2\TAP\tapv2\tap_project\BACKEND\CrudStudent\CrudStudent\
+build_property.ProjectDir = D:\Facultate\SEM2\TAP\tap_project\BACKEND\CrudStudent\CrudStudent\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\Facultate\SEM2\TAP\tapv2\tap_project\BACKEND\CrudStudent\CrudStudent
+build_property.MSBuildProjectDirectory = D:\Facultate\SEM2\TAP\tap_project\BACKEND\CrudStudent\CrudStudent
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/Facultate/SEM2/TAP/tapv2/tap_project/BACKEND/CrudStudent/CrudStudent/Pages/Error.cshtml]
+[D:/Facultate/SEM2/TAP/tap_project/BACKEND/CrudStudent/CrudStudent/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Facultate/SEM2/TAP/tapv2/tap_project/BACKEND/CrudStudent/CrudStudent/Pages/Index.cshtml]
+[D:/Facultate/SEM2/TAP/tap_project/BACKEND/CrudStudent/CrudStudent/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Facultate/SEM2/TAP/tapv2/tap_project/BACKEND/CrudStudent/CrudStudent/Pages/Privacy.cshtml]
+[D:/Facultate/SEM2/TAP/tap_project/BACKEND/CrudStudent/CrudStudent/Pages/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Facultate/SEM2/TAP/tapv2/tap_project/BACKEND/CrudStudent/CrudStudent/Pages/Shared/_ValidationScriptsPartial.cshtml]
+[D:/Facultate/SEM2/TAP/tap_project/BACKEND/CrudStudent/CrudStudent/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Facultate/SEM2/TAP/tapv2/tap_project/BACKEND/CrudStudent/CrudStudent/Pages/_ViewImports.cshtml]
+[D:/Facultate/SEM2/TAP/tap_project/BACKEND/CrudStudent/CrudStudent/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Facultate/SEM2/TAP/tapv2/tap_project/BACKEND/CrudStudent/CrudStudent/Pages/_ViewStart.cshtml]
+[D:/Facultate/SEM2/TAP/tap_project/BACKEND/CrudStudent/CrudStudent/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Facultate/SEM2/TAP/tapv2/tap_project/BACKEND/CrudStudent/CrudStudent/Pages/Shared/_Layout.cshtml]
+[D:/Facultate/SEM2/TAP/tap_project/BACKEND/CrudStudent/CrudStudent/Pages/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-iowjo3l0xv

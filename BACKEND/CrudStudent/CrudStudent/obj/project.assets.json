@@ -5428,11 +5428,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Facultate\\SEM2\\TAP\\tapv2\\tap_project\\BACKEND\\CrudStudent\\CrudStudent\\CrudStudent.csproj",
+      "projectUniqueName": "D:\\Facultate\\SEM2\\TAP\\tap_project\\BACKEND\\CrudStudent\\CrudStudent\\CrudStudent.csproj",
       "projectName": "CrudStudent",
-      "projectPath": "D:\\Facultate\\SEM2\\TAP\\tapv2\\tap_project\\BACKEND\\CrudStudent\\CrudStudent\\CrudStudent.csproj",
+      "projectPath": "D:\\Facultate\\SEM2\\TAP\\tap_project\\BACKEND\\CrudStudent\\CrudStudent\\CrudStudent.csproj",
       "packagesPath": "C:\\Users\\DEAC\\.nuget\\packages\\",
-      "outputPath": "D:\\Facultate\\SEM2\\TAP\\tapv2\\tap_project\\BACKEND\\CrudStudent\\CrudStudent\\obj\\",
+      "outputPath": "D:\\Facultate\\SEM2\\TAP\\tap_project\\BACKEND\\CrudStudent\\CrudStudent\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\DEAC\\AppData\\Roaming\\NuGet\\NuGet.Config",

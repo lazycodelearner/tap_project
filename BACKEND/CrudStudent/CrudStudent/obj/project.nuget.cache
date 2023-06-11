@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "fuB4GpaaAqOBqsBSiuja95MO1u+kPSkIA0zCnDlEeTFCskfbzvba/KmLxPM+192PMVVbxFT7lsJEGAzETAcQYw==",
+  "dgSpecHash": "ibKzTSbZPE4LpLdqzsH7CnZO37GmFhriRLVqGg1s7PQji3f8WNbwKBho9oCoxou6R/+5zphCeHCgstIVPjCE/w==",
   "success": true,
-  "projectFilePath": "D:\\Facultate\\SEM2\\TAP\\tapv2\\tap_project\\BACKEND\\CrudStudent\\CrudStudent\\CrudStudent.csproj",
+  "projectFilePath": "D:\\Facultate\\SEM2\\TAP\\tap_project\\BACKEND\\CrudStudent\\CrudStudent\\CrudStudent.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\DEAC\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\DEAC\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",

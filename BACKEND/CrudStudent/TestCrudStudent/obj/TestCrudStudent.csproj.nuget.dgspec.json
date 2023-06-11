@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Facultate\\SEM2\\TAP\\tapv2\\tap_project\\BACKEND\\CrudStudent\\TestCrudStudent\\TestCrudStudent.csproj": {}
+    "D:\\Facultate\\SEM2\\TAP\\tap_project\\BACKEND\\CrudStudent\\TestCrudStudent\\TestCrudStudent.csproj": {}
   },
   "projects": {
-    "D:\\Facultate\\SEM2\\TAP\\tapv2\\tap_project\\BACKEND\\CrudStudent\\TestCrudStudent\\TestCrudStudent.csproj": {
+    "D:\\Facultate\\SEM2\\TAP\\tap_project\\BACKEND\\CrudStudent\\TestCrudStudent\\TestCrudStudent.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Facultate\\SEM2\\TAP\\tapv2\\tap_project\\BACKEND\\CrudStudent\\TestCrudStudent\\TestCrudStudent.csproj",
+        "projectUniqueName": "D:\\Facultate\\SEM2\\TAP\\tap_project\\BACKEND\\CrudStudent\\TestCrudStudent\\TestCrudStudent.csproj",
         "projectName": "TestCrudStudent",
-        "projectPath": "D:\\Facultate\\SEM2\\TAP\\tapv2\\tap_project\\BACKEND\\CrudStudent\\TestCrudStudent\\TestCrudStudent.csproj",
+        "projectPath": "D:\\Facultate\\SEM2\\TAP\\tap_project\\BACKEND\\CrudStudent\\TestCrudStudent\\TestCrudStudent.csproj",
         "packagesPath": "C:\\Users\\DEAC\\.nuget\\packages\\",
-        "outputPath": "D:\\Facultate\\SEM2\\TAP\\tapv2\\tap_project\\BACKEND\\CrudStudent\\TestCrudStudent\\obj\\",
+        "outputPath": "D:\\Facultate\\SEM2\\TAP\\tap_project\\BACKEND\\CrudStudent\\TestCrudStudent\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\DEAC\\AppData\\Roaming\\NuGet\\NuGet.Config",

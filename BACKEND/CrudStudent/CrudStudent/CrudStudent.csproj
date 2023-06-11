@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <Folder Include="CRUD\" />
+    <Folder Include="Migrations\Subject\" />
   </ItemGroup>
 
 </Project>
