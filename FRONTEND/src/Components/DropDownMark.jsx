@@ -15,11 +15,19 @@ function DropDownMark({ props, sendDataToParentMark }) {
         disabled
       ></Form.Control>
 
-      <Dropdown.Toggle split variant="dark" id="dropdown-split-basic" />
+      <Dropdown.Toggle split variant="dark" id="dropdown-split-basic1" />
 
       <Dropdown.Menu>
         <Dropdown.Item onClick={() => setMark("Subject Mark")}>
           Subject Mark
+        </Dropdown.Item>
+        <Dropdown.Item
+          onClick={() => {
+            setMark(0);
+            sendDataToParentMark(0);
+          }}
+        >
+          0
         </Dropdown.Item>
         <Dropdown.Item
           onClick={() => {

@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,7 +9,14 @@ builder.Services.AddDbContext<CRUD.Models.StudentContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("CRUDCS")));
 builder.Services.AddDbContext<CRUD.Models.SubjectContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("CRUDCS")));
-
+builder.Services.AddControllers().AddNewtonsoftJson(options =>
+{
+	// Configurarea serializ?rii JSON folosind Newtonsoft.Json
+	options.SerializerSettings.ContractResolver = new DefaultContractResolver
+	{
+		NamingStrategy = new CamelCaseNamingStrategy()
+	};
+});
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

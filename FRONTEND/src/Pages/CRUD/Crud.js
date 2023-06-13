@@ -40,7 +40,6 @@ function CRUD() {
     setEditAge("");
     setEditBudget("NO");
   };
-  const handleShow = () => setShow(true);
 
   const setHandleBudget = (e) => {
     if (e.target.checked) {
@@ -108,7 +107,7 @@ function CRUD() {
       valueContainsWhiteSpaces(lastName) === false ||
       valueContainsWhiteSpaces(age) === false
     )
-      alert("Name is not a correct value");
+      alert("One of the input contains white spaces whith text");
     else if (isInputOnlyNumbers(age) === false) alert("Age is not a number");
     else if (age < 16 || age > 100) alert("Age should be between 16 and 100");
     else if (age.toString().indexOf(".") !== -1)
@@ -142,7 +141,7 @@ function CRUD() {
   };
 
   const handleEdit = (id) => {
-    handleShow();
+    setShow(true);
     axios
       .get(`https://localhost:7151/api/Student/GetStudent/${id}`)
       .then((result) => {
@@ -217,6 +216,16 @@ function CRUD() {
         .then((result) => {
           if (result.status === 200) {
             toast.success("Student has been delete.");
+            axios
+              .delete(`https://localhost:7151/api/Subject/DeleteSubjects/${id}`)
+              .then((result) => {
+                if (result.status === 200) {
+                  toast.success("All student's subjects have been deleted.");
+                }
+              })
+              .catch((error) => {
+                toast.error(error.toString());
+              });
             getData();
           }
         })
@@ -318,6 +327,7 @@ function CRUD() {
                   <td>{item.budget}</td>
                   <td colSpan={3}>
                     <Button
+                      className="btnSubject"
                       variant="warning"
                       onClick={() => {
                         toSubjects(

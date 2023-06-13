@@ -2,8 +2,7 @@ import React from "react";
 import SubjectsCard from "./SubjectsCard";
 import VariantsExample from "./VariantsExample";
 
-const SubjectsList = ({ subjectsData }, studentId) => {
-  console.log(subjectsData);
+const SubjectsList = ({ subjectsData, getData }) => {
   return (
     <div className="SubjectsListDiv">
       {subjectsData.length >= 1 ? (
@@ -14,6 +13,7 @@ const SubjectsList = ({ subjectsData }, studentId) => {
               subjectNameParameter={subject.subjectName}
               mark={subject.mark}
               studentId={subject.studentId}
+              getData={getData}
             />
           );
         })

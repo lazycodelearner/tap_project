@@ -1,5 +1,4 @@
 import React from "react";
-import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import "./Components.css";
 import { Link } from "react-router-dom";
@@ -8,7 +7,6 @@ const NavbarStudent = (text) => {
   return (
     <>
       <Navbar bg="dark" variant="dark">
-        <Container>
           <Navbar.Brand href="#home">
             <Link to="/">
               <img
@@ -21,7 +19,6 @@ const NavbarStudent = (text) => {
             </Link>
           </Navbar.Brand>
           <h1 className="NavBarHeader">{text.text}</h1>
-        </Container>
       </Navbar>
     </>
   );

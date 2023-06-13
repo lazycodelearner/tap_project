@@ -89,6 +89,22 @@ namespace CrudStudent.Controller
 			await _subjectContext.SaveChangesAsync();
 			return Ok();
 		}
+		[HttpDelete("{id}")]
+		public async Task<ActionResult> DeleteSubjects(int id)
+		{
+			if (_subjectContext.Subjects == null)
+			{
+				return NotFound();
+			}
+			var subjects = _subjectContext.Subjects.Where(s => s.StudentId == id).ToList();
+			if (subjects == null)
+			{
+				return NotFound();
+			}
+			_subjectContext.Subjects.RemoveRange(subjects);
+			await _subjectContext.SaveChangesAsync();
+			return Ok();
+		}
 	}
 }
 

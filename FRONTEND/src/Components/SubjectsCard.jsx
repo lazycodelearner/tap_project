@@ -5,18 +5,15 @@ import Row from "react-bootstrap/Row";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 import Container from "react-bootstrap/Container";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import DropDownSubject from "./DropDownSubject";
 import DropDownMark from "./DropDownMark";
 
-const SubjectsCard = ({ id, subjectNameParameter, mark, studentId }) => {
-  const [editSubjectName, setEditSubjectName] = useState("");
+const SubjectsCard = ({ id, subjectNameParameter, mark, studentId, getData}) => {
   const [subjectName, setSubjectName] = useState("");
   const [editMark, setEditMark] = useState("");
   const [Mark, setMark] = useState("");
   const [show, setShow] = useState(false);
-  const handleShow = () => setShow(true);
 
   useEffect(() => {
     setMark(mark);
@@ -52,18 +49,15 @@ const SubjectsCard = ({ id, subjectNameParameter, mark, studentId }) => {
 
   const handleClose = () => {
     setShow(false);
-    setSubjectName(editSubjectName);
-    setEditSubjectName("");
     setMark(editMark);
     setEditMark("");
   };
 
   const handleEdit = () => {
-    handleShow();
+    setShow(true);
     axios
       .get(`https://localhost:7151/api/Subject/GetSubject/${id}`)
       .then((result) => {
-        setEditSubjectName(result.data.subjectName);
         setEditMark(result.data.mark);
       })
       .catch((error) => {
@@ -75,13 +69,13 @@ const SubjectsCard = ({ id, subjectNameParameter, mark, studentId }) => {
     const url = `https://localhost:7151/api/Subject/PutSubject/${id}`;
     const newData = {
       subjectId: id,
-      subjectName: editSubjectName,
+      subjectName: subjectName,
       mark: editMark,
       studentId: studentId,
     };
 
-    if ({ Mark } < 1 || { Mark } > 10)
-      alert("Mark should be in interval [1,10]");
+    if ({ Mark } < 0 || { Mark } > 10)
+      alert("Mark should be in interval [0,10]");
     else {
       axios
         .put(url, newData)
@@ -101,7 +95,7 @@ const SubjectsCard = ({ id, subjectNameParameter, mark, studentId }) => {
         .delete(`https://localhost:7151/api/Subject/DeleteSubject/${id}`)
         .then(() => {
           toast.success("Subject has been delete.");
-          window.location.reload();
+          getData();
         })
         .catch((error) => {
           toast.error(error.toString());
@@ -109,21 +103,14 @@ const SubjectsCard = ({ id, subjectNameParameter, mark, studentId }) => {
     }
   };
 
-  const sendDataToParentSubject = (index) => {
-    // the callback. Use a better name
-    console.log(index);
-    setEditSubjectName(index);
-  };
-
   const sendDataToParentMark = (index) => {
-    // the callback. Use a better name
-    console.log(index);
     setEditMark(index);
   };
 
   return (
     <>
       <div className="SubjectsCardDiv">
+        <ToastContainer />
         <Card>
           <Card.Img
             className="mx-auto"
@@ -142,7 +129,7 @@ const SubjectsCard = ({ id, subjectNameParameter, mark, studentId }) => {
             <Button variant="primary" onClick={handleEdit}>
               Edit
             </Button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;
             <Button variant="danger" onClick={handleDelete}>
               Delete Subject
             </Button>
@@ -156,12 +143,6 @@ const SubjectsCard = ({ id, subjectNameParameter, mark, studentId }) => {
         </Modal.Header>
         <Modal.Body>
           <Container>
-            <Row>
-              <DropDownSubject
-                props={subjectName}
-                sendDataToParentSubject={sendDataToParentSubject}
-              ></DropDownSubject>
-            </Row>
             <Row>
               <DropDownMark
                 props={Mark}

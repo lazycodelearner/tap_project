@@ -44,9 +44,6 @@ function Subjects() {
       mark: Mark,
       studentId: location.state.studentId.studentId,
     };
-    console.log(
-      subjectName + " " + Mark + " " + location.state.studentId.studentId
-    );
     var ok = true;
     data.map((subject, index) => {
       if (subject.subjectName === subjectName) ok = false;
@@ -70,14 +67,10 @@ function Subjects() {
   };
 
   const sendDataToParentSubject = (index) => {
-    // the callback. Use a better name
-    console.log(index);
     setSubjectName(index);
   };
 
   const sendDataToParentMark = (index) => {
-    // the callback. Use a better name
-    console.log(index);
     setMark(index);
   };
 
@@ -127,7 +120,7 @@ function Subjects() {
 
         <SubjectsList
           subjectsData={data}
-          studentId={location.state.studentId.studentId}
+          getData={getData}
         ></SubjectsList>
       </Fragment>
     </>
